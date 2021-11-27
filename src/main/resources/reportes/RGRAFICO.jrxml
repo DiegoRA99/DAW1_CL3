@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RGRAFICO" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1bd2eaa3-5c10-418e-848a-3f3652254b8b">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="CL3_RICALDE"/>
+	<queryString language="SQL">
+		<![CDATA[select COUNT(A1.CODIGO), B1.DESCRIPCION from CITAS A1 JOIN TIPO B1 ON A1.TIPO = B1.CODIGO GROUP BY B1.DESCRIPCION]]>
+	</queryString>
+	<field name="COUNT(A1.CODIGO)" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="COUNT(A1.CODIGO)"/>
+	</field>
+	<field name="DESCRIPCION" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DESCRIPCION"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipo"/>
+	</field>
+	<variable name="COUNT(A1.CODIGO)1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{COUNT(A1.CODIGO)}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="0" width="370" height="79" forecolor="#1400CC" uuid="bb407dcf-d1e0-4cb0-8a4e-99d184adf0f7"/>
+				<textElement textAlignment="Center">
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte Listado de Citas en GRAFICO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="281" splitType="Stretch">
+			<pieChart>
+				<chart evaluationTime="Report">
+					<reportElement x="120" y="0" width="310" height="281" uuid="2d8249be-529c-4378-8b0e-576462a8aefe"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{DESCRIPCION}]]></keyExpression>
+					<valueExpression><![CDATA[$F{COUNT(A1.CODIGO)}]]></valueExpression>
+					<labelExpression><![CDATA[$F{COUNT(A1.CODIGO)} + ""]]></labelExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
+	</columnHeader>
+</jasperReport>

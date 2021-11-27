@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Evaluacion CL3 DAW1</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+ 	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script></head>
+	
+
+	
+<body >
+
+	
+	<div th:if="${message}" th:text="${message}" 
+	th:class="${'alert ' + alertClass}" style="font-size:20px"/>
+	
+	<div class="container" style="background-color:#FFC413">
+		<br>
+		<center><h1>Registro de Citas</h1></center>
+		<br><br>
+		<form th:object="${citas}" th:action="@{/addCita}" method="post">
+			<div class="row">
+				<div class="col-md-2">
+					<label for="codigo">Codigo :</label>
+				</div>
+				<div class="col-md-6">
+					<input th:field="*{codigo}" id="codigo" class="form-control"
+								placeholder="Ingrese el codigo" type="number"  min="1">	
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2">	
+					<label for="nomdueno">DUEÑO</label> 		
+				</div>
+				<div class="col-md-6">
+					<input th:field="*{nomdueno}"  id="nomdueno"
+					placeholder="Ingrese nombre" class="form-control">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-2">	
+					<label for="nommascota">Nombre Mascota</label> 		
+				</div>
+				<div class="col-md-6">
+					<input th:field="*{nommascota}"  id="nommascota"
+						placeholder="Ingrese nombre" class="form-control">
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-2">	
+					<label for="idtipo">Tipo: </label> 		
+				</div>
+				<div class="col-md-6">
+					<select th:field="*{idtipo}" class="form-control" id="idtipo">
+				    <option th:each="tipo : ${tipos}"
+				     th:value="${tipo.codigo}"
+				     th:text="${tipo.descripcion}"></option>
+				    </select>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-2">
+					<label for="peso">Peso</label>			
+				</div>
+				<div class="col-md-6">
+					<input th:field=*{peso}  id="peso" class="form-control"
+					placeholder="Peso mascota" type="number" 
+					step="0.1" min="0.1">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-2">	
+					<label for="fecreg">Fecha</label><br/>		
+				</div>
+				<div class="col-md-6">
+					<input th:field=*{fecreg} class="form-control" id="fecreg" 
+					type="date" value="2019-05-19" >
+				</div>
+			</div>
+
+			<hr>
+			<div class="form-group row">
+				<div class="col-md-2 offset-md-2">
+					<button type="submit" class="btn btn-primary form-control">Registrar</button>
+				</div>
+				<div class="col-md-2 offset-md-2">
+					<a th:href="@{/REPORTE}" target="_blank"
+					class="btn btn-primary form-control">Listar</a>
+				</div>
+			</div>
+			
+			<div class="form-group row">
+				
+				<div class="col-md-1 offset-md-5">
+					<a th:href="@{/RGRAFICO}" target="_blank" style ="font-size:20px;font-weight:bold ">pdf</a>
+				</div>
+			</div>
+		<form>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
